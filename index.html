@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nalini Gupta | Future Data Scientist</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Rajdhani:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#050507;--panel:#12141a;--red:#8a6d00;--gold:#ffd60a;--arc:#8fa3b8;--text:#eef0f3;--muted:#9aa3ae;box-sizing:border-box}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'Rajdhani',system-ui,sans-serif;font-size:19px;line-height:1.55;overflow-x:hidden;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (hover:hover) and (pointer:fine){body,a,button{cursor:none}}
+h1,h2,h3{font-family:'Orbitron',system-ui,sans-serif;margin:0}
+section{max-width:1000px;margin:0 auto;padding:80px 22px;position:relative;z-index:1}
+h2{font-size:clamp(1.5rem,4vw,2.2rem);color:var(--gold);margin-bottom:30px;text-shadow:0 0 18px rgba(255,214,10,.45)}
+#sparks{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+/* cursor */
+.cur,.dot{position:fixed;top:0;left:0;pointer-events:none;z-index:99;display:none;border-radius:50%}
+.cur{width:44px;height:44px;margin:-22px 0 0 -22px;border:2px solid var(--arc);box-shadow:0 0 14px var(--arc),inset 0 0 10px rgba(143,163,184,.5);transition:width .2s,height .2s,margin .2s,border-color .2s}
+.cur::before{content:"";position:absolute;inset:7px;border-radius:50%;border:2px dashed var(--gold);animation:spin 5s linear infinite}
+.dot{width:8px;height:8px;margin:-4px 0 0 -4px;background:#fff;box-shadow:0 0 12px 3px var(--arc)}
+.cur.big{width:70px;height:70px;margin:-35px 0 0 -35px;border-color:var(--red)}
+@media (hover:hover) and (pointer:fine){.cur,.dot{display:block}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes pulse{50%{transform:scale(1.2);opacity:.75}}
+@keyframes bob{50%{transform:translateY(-12px)}}
+/* hero */
+.hero{max-width:none;min-height:100vh;display:grid;place-items:center;text-align:center;overflow:hidden;padding-top:30px}
+.floor{position:absolute;left:-50%;right:-50%;bottom:0;height:46%;background:linear-gradient(var(--bg),transparent 30%),repeating-linear-gradient(90deg,rgba(138,109,0,.55) 0 2px,transparent 2px 70px),repeating-linear-gradient(0deg,rgba(138,109,0,.55) 0 2px,transparent 2px 70px);transform:perspective(380px) rotateX(62deg);transform-origin:bottom;opacity:.55}
+.stage{perspective:900px;position:relative}
+.scene{transform-style:preserve-3d;transition:transform .15s ease-out;width:260px;height:260px;margin:0 auto 30px;position:relative}
+.scene i{position:absolute;inset:0;border-radius:50%;border:4px solid var(--arc);box-shadow:0 0 22px var(--arc),inset 0 0 22px var(--arc);transform-style:preserve-3d}
+.scene i:nth-child(1){animation:r1 10s linear infinite;border-style:dashed}
+.scene i:nth-child(2){inset:30px;animation:r2 8s linear infinite;border-color:var(--gold);box-shadow:0 0 22px var(--gold),inset 0 0 18px var(--gold)}
+.scene i:nth-child(3){inset:62px;animation:r3 6s linear infinite;border-style:dotted;border-width:6px}
+.bat{position:absolute;left:50%;top:50%;width:160px;margin:-48px 0 0 -80px;transform:translateZ(40px);filter:drop-shadow(0 0 14px #ffd60a)}
+.scene b{position:absolute;inset:60px;border-radius:50%;background:radial-gradient(circle,#fff 0,var(--arc) 50%,transparent 74%);transform:translateZ(30px);animation:pulse 2.2s ease-in-out infinite}
+@keyframes r1{to{transform:rotateX(70deg) rotateZ(360deg)}}
+@keyframes r2{from{transform:rotateY(65deg) rotateZ(0)}to{transform:rotateY(65deg) rotateZ(-360deg)}}
+@keyframes r3{from{transform:rotateX(25deg) rotateY(25deg) rotateZ(0)}to{transform:rotateX(25deg) rotateY(25deg) rotateZ(360deg)}}
+.hero h1{font-size:clamp(2.3rem,9vw,5rem);font-weight:800;background:linear-gradient(180deg,#fff2a8,var(--gold) 45%,var(--red));-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 6px 0 rgba(70,55,0,.7))}
+.hero p{color:var(--muted);font-size:1.3rem;max-width:580px;margin:14px auto 26px}
+.btn{display:inline-block;padding:12px 28px;border:0;background:var(--gold);color:#1a0d10;text-decoration:none;font-family:'Orbitron',sans-serif;font-weight:600;font-size:.85rem;clip-path:polygon(14px 0,100% 0,calc(100% - 14px) 100%,0 100%);margin:6px;transition:background .2s,color .2s,transform .2s}
+.btn:hover,.btn:focus-visible{background:var(--red);color:#fff;transform:translateY(-3px);outline:none}
+.btn.alt{background:var(--arc)}
+.btn.red{background:#2b3039;color:#fff}
+.mail{font-family:'Orbitron',sans-serif;color:var(--arc);font-size:1.05rem;word-break:break-all;margin:6px 0 22px}
+/* panels with 3D tilt */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:22px;perspective:1000px}
+.panel{background:linear-gradient(150deg,var(--panel),#08090c);border:1px solid #2b3039;border-top:3px solid var(--red);padding:22px 24px;border-radius:6px;transform-style:preserve-3d;transition:transform .12s ease-out,box-shadow .2s;box-shadow:0 14px 30px rgba(0,0,0,.6)}
+.panel:hover{box-shadow:0 20px 40px rgba(138,109,0,.3),0 0 0 1px var(--gold)}
+.panel h3{color:var(--arc);font-size:1.02rem;margin-bottom:10px;transform:translateZ(30px)}
+.panel p{margin:0;color:var(--muted)}
+.skill{margin:15px 0;transform:translateZ(18px)}
+.skill span{display:flex;justify-content:space-between;font-weight:600}
+.bar{height:9px;background:#1b1e25;border-radius:5px;overflow:hidden;margin-top:5px}
+.bar em{display:block;height:100%;background:linear-gradient(90deg,var(--red),var(--gold));box-shadow:0 0 12px var(--gold)}
+.bar.soon em{background:repeating-linear-gradient(90deg,#2b3039 0 10px,#1b1e25 10px 20px);box-shadow:none}
+/* guide */
+.guide{display:grid;grid-template-columns:minmax(240px,340px) 1fr;gap:34px;align-items:center}
+@media (max-width:760px){.guide{grid-template-columns:1fr}}
+.photo{perspective:900px}
+.card3d{transition:transform .15s ease-out;transform-style:preserve-3d;position:relative;border-radius:14px;background:radial-gradient(circle at 50% 35%,#1c212b,#0a0b0e 70%);border:2px solid var(--gold);box-shadow:0 0 0 4px #0a0b0e,0 0 26px rgba(255,214,10,.45),0 24px 40px rgba(0,0,0,.7)}
+.card3d::after{content:"";position:absolute;inset:0;border-radius:12px;background:linear-gradient(115deg,transparent 40%,rgba(255,255,255,.12) 50%,transparent 60%);pointer-events:none}
+.char{display:block;width:100%;height:auto;animation:bob 4s ease-in-out infinite;filter:drop-shadow(0 14px 10px rgba(0,0,0,.6))}
+.blink{animation:blink 4.5s infinite;transform-box:fill-box;transform-origin:center}
+@keyframes blink{0%,94%,100%{transform:scaleY(1)}97%{transform:scaleY(.1)}}
+.mouth{transform-box:fill-box;transform-origin:center;display:none}
+.talking .smile{display:none}.talking .mouth{display:block;animation:talk .22s infinite alternate}
+@keyframes talk{to{transform:scaleY(.35)}}
+.wisp{stroke-dasharray:14 10;animation:dash 2.4s linear infinite}.wisp.w2{animation-duration:3.4s;animation-direction:reverse}
+@keyframes dash{to{stroke-dashoffset:-48}}
+.glow{animation:pulse 2.2s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+.bubble{background:linear-gradient(150deg,#161a22,#0b0d11);border:1px solid var(--arc);border-radius:6px 22px 22px 22px;padding:24px 26px;box-shadow:0 0 24px rgba(143,163,184,.25);min-height:170px}
+.bubble .who{font-family:'Orbitron',sans-serif;color:var(--arc);font-size:.9rem;margin-bottom:8px}
+.bubble p{margin:0;font-size:1.2rem;min-height:5.2em}
+.ctrl{margin-top:16px}
+.ctrl .btn{font-size:.75rem;padding:10px 20px}
+.dots{display:inline-flex;gap:8px;margin-left:14px;vertical-align:middle}
+.dots u{width:10px;height:10px;border-radius:50%;background:#3a4150;text-decoration:none}
+.dots u.on{background:var(--gold);box-shadow:0 0 10px var(--gold)}
+/* roadmap */
+.road{border-left:2px solid var(--red);margin-left:8px;padding-left:28px}
+.road div{position:relative;margin-bottom:28px}
+.road div::before{content:"";position:absolute;left:-37px;top:6px;width:14px;height:14px;border-radius:50%;background:var(--gold);box-shadow:0 0 12px var(--gold)}
+.road div.next::before{background:var(--bg);border:2px solid var(--arc);box-shadow:0 0 12px var(--arc)}
+.road h3{font-size:1rem}
+.road p{margin:3px 0 0;color:var(--muted)}
+.contact{text-align:center}
+footer{text-align:center;color:var(--muted);padding:30px 22px 50px;position:relative;z-index:1}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<canvas id="sparks"></canvas>
+<div class="cur" id="cur"></div><div class="dot" id="dot"></div>
+
+<section class="hero" id="top">
+  <div class="floor"></div>
+  <div class="stage" id="stage">
+    <div class="scene" id="scene" aria-hidden="true"><i></i><i></i><i></i><b></b><svg class="bat" viewBox="0 0 100 60"><ellipse cx="50" cy="30" rx="48" ry="28" fill="#ffd60a"/><path d="M50 12 L54 20 Q62 14 74 16 Q86 18 94 28 Q84 26 78 32 Q72 28 66 36 Q60 32 56 42 L50 50 L44 42 Q40 32 34 36 Q28 28 22 32 Q16 26 6 28 Q14 18 26 16 Q38 14 46 20 Z" fill="#0b0c0f"/></svg></div>
+    <h1>Nalini Gupta</h1>
+    <p>BTech student training to become a data scientist. Python, SQL and statistics today, machine learning next.</p>
+    <a class="btn" href="#guide">Meet my guide</a>
+    <a class="btn alt" href="#contact">Contact me</a>
+  </div>
+</section>
+
+<section id="guide">
+  <h2>Case file</h2>
+  <div class="guide">
+    <div class="photo">
+      <div class="card3d" data-tilt="8" id="card">
+<svg class="char" id="char" viewBox="0 0 300 360" role="img" aria-label="Animated 3D style guide character with bat-ear headband">
+<defs>
+<radialGradient id="skin" cx="45%" cy="38%" r="70%"><stop offset="0" stop-color="#e2a878"/><stop offset=".65" stop-color="#c88a5a"/><stop offset="1" stop-color="#a86d43"/></radialGradient>
+<linearGradient id="hair" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2d3547"/><stop offset="1" stop-color="#06070a"/></linearGradient>
+<linearGradient id="suit" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a4150"/><stop offset="1" stop-color="#0b0c10"/></linearGradient>
+<radialGradient id="iris" cx="50%" cy="35%" r="70%"><stop offset="0" stop-color="#6fe0d4"/><stop offset=".55" stop-color="#1c7f78"/><stop offset="1" stop-color="#06201f"/></radialGradient>
+<radialGradient id="aura"><stop offset="0" stop-color="#ffd60a" stop-opacity=".45"/><stop offset="1" stop-color="#ffd60a" stop-opacity="0"/></radialGradient>
+<radialGradient id="arc"><stop offset="0" stop-color="#fff"/><stop offset=".5" stop-color="#8fa3b8"/><stop offset="1" stop-color="#8fa3b8" stop-opacity="0"/></radialGradient>
+</defs>
+<circle class="glow" cx="150" cy="190" r="150" fill="url(#aura)" opacity=".5"/>
+<!-- back hair: wavy bob, curled out -->
+<path d="M74 150 C56 92 98 46 150 46 C202 46 244 92 226 150 C244 186 240 222 222 240 Q212 252 204 240 Q198 232 192 238 L108 238 Q102 232 96 240 Q88 252 78 240 C60 222 56 186 74 150 Z" fill="url(#hair)"/>
+<!-- body -->
+<path d="M55 360 C58 305 90 285 125 278 L175 278 C210 285 242 305 245 360 Z" fill="url(#suit)"/>
+<path d="M125 278 L150 318 L175 278" fill="none" stroke="#ffd60a" stroke-width="5"/>
+<path d="M58 345 C62 312 88 296 112 288" fill="none" stroke="#ffd60a" stroke-width="4"/>
+<path d="M242 345 C238 312 212 296 188 288" fill="none" stroke="#ffd60a" stroke-width="4"/>
+<ellipse class="glow" cx="150" cy="332" rx="24" ry="13" fill="#ffd60a"/>
+<g transform="translate(150 332) scale(.3) translate(-50 -30)"><path d="M50 12 L54 20 Q62 14 74 16 Q86 18 94 28 Q84 26 78 32 Q72 28 66 36 Q60 32 56 42 L50 50 L44 42 Q40 32 34 36 Q28 28 22 32 Q16 26 6 28 Q14 18 26 16 Q38 14 46 20 Z" fill="#0b0c0f"/></g>
+<!-- neck -->
+<path d="M134 212 L131 284 Q150 298 169 284 L166 212 Z" fill="#b97c4f"/>
+<path d="M132 248 Q150 266 168 248 L168 222 L132 222 Z" fill="#9a6540" opacity=".6"/>
+<!-- new face: heart-shaped, soft cheeks -->
+<path d="M88 146 C86 108 114 92 150 92 C186 92 214 108 212 146 C210 184 186 218 150 228 C114 218 90 184 88 146 Z" fill="url(#skin)"/>
+<path d="M96 168 C106 200 128 216 150 226 C172 216 194 200 204 168" fill="none" stroke="#8f5733" stroke-width="2" opacity=".5"/>
+<!-- centre-parted wavy hair -->
+<path d="M150 48 C104 48 76 96 84 150 C88 176 80 204 88 230 Q100 216 104 228 C112 198 104 168 108 146 C112 118 130 98 150 92 Z" fill="url(#hair)"/>
+<path d="M150 48 C196 48 224 96 216 150 C212 176 220 204 212 230 Q200 216 196 228 C188 198 196 168 192 146 C188 118 170 98 150 92 Z" fill="url(#hair)"/>
+<path d="M146 54 C120 56 98 80 94 118 M154 54 C180 56 202 80 206 118 M96 190 Q104 178 100 164 M204 190 Q196 178 200 164" fill="none" stroke="#6b7a96" stroke-width="2.6" stroke-linecap="round" opacity=".6"/>
+<!-- bat-ear headband -->
+<path d="M90 100 Q150 66 210 100" fill="none" stroke="#14161b" stroke-width="7" stroke-linecap="round"/>
+<path d="M104 88 L99 50 L130 76 Z" fill="#14161b" stroke="#ffd60a" stroke-width="2.5" stroke-linejoin="round"/>
+<path d="M196 88 L201 50 L170 76 Z" fill="#14161b" stroke="#ffd60a" stroke-width="2.5" stroke-linejoin="round"/>
+<!-- soft arched brows -->
+<path d="M98 138 Q112 127 134 133" fill="none" stroke="#150a0e" stroke-width="3" stroke-linecap="round"/>
+<path d="M166 133 Q188 127 202 138" fill="none" stroke="#150a0e" stroke-width="3" stroke-linecap="round"/>
+<!-- cat eyes -->
+<g class="blink">
+<ellipse cx="118" cy="160" rx="16" ry="12.5" fill="#fff"/>
+<ellipse cx="119" cy="160" rx="10.5" ry="12" fill="url(#iris)"/><ellipse cx="119" cy="161" rx="4.8" ry="6.8" fill="#031010"/>
+<circle cx="123" cy="154" r="3.4" fill="#fff"/><circle cx="114" cy="167" r="1.7" fill="#fff" opacity=".85"/>
+<ellipse cx="182" cy="160" rx="16" ry="12.5" fill="#fff"/>
+<ellipse cx="181" cy="160" rx="10.5" ry="12" fill="url(#iris)"/><ellipse cx="181" cy="161" rx="4.8" ry="6.8" fill="#031010"/>
+<circle cx="185" cy="154" r="3.4" fill="#fff"/><circle cx="176" cy="167" r="1.7" fill="#fff" opacity=".85"/>
+</g>
+<path d="M99 164 Q104 146 134 150 M101 160 L88 148" fill="none" stroke="#060203" stroke-width="4.2" stroke-linecap="round"/>
+<path d="M201 164 Q196 146 166 150 M199 160 L212 148" fill="none" stroke="#060203" stroke-width="4.2" stroke-linecap="round"/>
+<!-- nose, blush, mole -->
+<path d="M150 180 Q146 190 150 192 Q154 190 150 180" fill="none" stroke="#8f5733" stroke-width="2" stroke-linecap="round"/>
+<circle cx="110" cy="190" r="10" fill="#e36a6a" opacity=".24"/><circle cx="190" cy="190" r="10" fill="#e36a6a" opacity=".24"/>
+<circle cx="196" cy="194" r="1.8" fill="#3a1f14"/>
+<!-- fuller lips -->
+<path class="smile" d="M134 205 Q142 199 150 203 Q158 199 166 205 Q150 224 134 205 Z" fill="#8b2a4a" stroke="#5e1830" stroke-width="2" stroke-linejoin="round"/>
+<ellipse class="mouth" cx="150" cy="210" rx="10" ry="8.5" fill="#4a0f22"/>
+<!-- shoulder pads -->
+<path d="M62 330 Q70 296 100 288 L108 312 Q84 318 74 346Z" fill="#1a1d24" stroke="#ffd60a" stroke-width="2.5"/>
+<path d="M238 330 Q230 296 200 288 L192 312 Q216 318 226 346Z" fill="#1a1d24" stroke="#ffd60a" stroke-width="2.5"/>
+</svg>
+      </div>
+    </div>
+    <div>
+      <div class="bubble" aria-live="polite">
+        <div class="who">Nova, your guide</div>
+        <p id="say"></p>
+      </div>
+      <div class="ctrl">
+        <button class="btn" id="prev" type="button">Back</button>
+        <button class="btn alt" id="next" type="button">Next</button>
+        <button class="btn" id="speak" type="button">Speak</button>
+        <button class="btn red" id="mute" type="button" aria-pressed="false">Mute</button>
+        <span class="dots" id="dots"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <h2>Utility belt</h2>
+  <div class="grid">
+    <div class="panel" data-tilt="10">
+      <h3>Equipped</h3>
+      <div class="skill"><span>Python</span><div class="bar"><em style="width:90%"></em></div></div>
+      <div class="skill"><span>SQL</span><div class="bar"><em style="width:80%"></em></div></div>
+      <div class="skill"><span>Statistics</span><div class="bar"><em style="width:70%"></em></div></div>
+      <div class="skill"><span>HTML</span><div class="bar"><em style="width:75%"></em></div></div>
+    </div>
+    <div class="panel" data-tilt="10">
+      <h3>Loading in 3 to 4 months</h3>
+      <div class="skill"><span>Advanced statistics</span><div class="bar soon"><em style="width:100%"></em></div></div>
+      <div class="skill"><span>Excel</span><div class="bar soon"><em style="width:100%"></em></div></div>
+      <div class="skill"><span>Power BI and Tableau</span><div class="bar soon"><em style="width:100%"></em></div></div>
+      <div class="skill"><span>Machine learning and NLP</span><div class="bar soon"><em style="width:100%"></em></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="roadmap">
+  <h2>Roadmap</h2>
+  <div class="road">
+    <div><h3>Done: Python, SQL, statistics, HTML</h3><p>The foundation is complete.</p></div>
+    <div class="next"><h3>Next, 3 to 4 months: Excel, Power BI, Tableau, ML, NLP</h3><p>Tools and models for real analysis.</p></div>
+    <div class="next"><h3>In 6 months: internship search</h3><p>Applying for data science internships.</p></div>
+  </div>
+</section>
+
+<section id="projects">
+  <h2>Cases (projects)</h2>
+  <div class="grid">
+    <div class="panel" data-tilt="10"><h3>Project 1</h3><p>Coming soon. What it does and the tools used.</p></div>
+    <div class="panel" data-tilt="10"><h3>Project 2</h3><p>Coming soon.</p></div>
+    <div class="panel" data-tilt="10"><h3>Project 3</h3><p>Coming soon.</p></div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <h2>Let’s work together</h2>
+  <p>Open to internship opportunities from next year.</p>
+  <p class="mail">jiyaa0036@gmail.com</p>
+  <a class="btn" href="mailto:jiyaa0036@gmail.com">Email me</a>
+  <a class="btn alt" href="https://www.linkedin.com/in/nalini-gupta-98b143376" target="_blank" rel="noopener">LinkedIn</a>
+</section>
+<footer>Nalini Gupta</footer>
+
+<script>
+(function(){
+var fine=matchMedia('(hover:hover) and (pointer:fine)').matches,calm=matchMedia('(prefers-reduced-motion:reduce)').matches;
+/* cursor */
+var cur=document.getElementById('cur'),dot=document.getElementById('dot'),cx=0,cy=0,mx=0,my=0;
+if(fine){
+  addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;dot.style.transform='translate('+mx+'px,'+my+'px)';mouse(e)});
+  (function loop(){cx+=(mx-cx)*.2;cy+=(my-cy)*.2;cur.style.transform='translate('+cx+'px,'+cy+'px)';requestAnimationFrame(loop)})();
+  document.querySelectorAll('a,button').forEach(function(el){
+    el.addEventListener('mouseenter',function(){cur.classList.add('big')});
+    el.addEventListener('mouseleave',function(){cur.classList.remove('big')});
+  });
+}
+/* 3D tilt */
+function tilt(el,e){var r=el.getBoundingClientRect(),m=+el.dataset.tilt||8;
+  var x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+  el.style.transform='rotateY('+(x*m*2)+'deg) rotateX('+(-y*m*2)+'deg)'}
+document.querySelectorAll('[data-tilt]').forEach(function(el){
+  el.addEventListener('mousemove',function(e){tilt(el,e)});
+  el.addEventListener('mouseleave',function(){el.style.transform=''});
+});
+function mouse(e){
+  var s=document.getElementById('scene');
+  var x=e.clientX/innerWidth-.5,y=e.clientY/innerHeight-.5;
+  s.style.transform='rotateY('+(x*40)+'deg) rotateX('+(-y*40)+'deg)';
+}
+/* sparks */
+var cv=document.getElementById('sparks'),g=cv.getContext('2d'),P=[];
+function size(){cv.width=innerWidth;cv.height=innerHeight}size();addEventListener('resize',size);
+for(var i=0;i<45;i++)P.push({x:Math.random()*innerWidth,y:Math.random()*innerHeight,r:Math.random()*2+.5,v:Math.random()*.6+.2,c:Math.random()<.6?'255,214,10':'138,109,0'});
+(function draw(){
+  g.clearRect(0,0,cv.width,cv.height);
+  P.forEach(function(p){p.y-=p.v;if(p.y<-5){p.y=cv.height+5;p.x=Math.random()*cv.width}
+    g.beginPath();g.fillStyle='rgba('+p.c+',.75)';g.shadowColor='rgb('+p.c+')';g.shadowBlur=10;g.arc(p.x,p.y,p.r,0,6.3);g.fill()});
+  if(!calm)requestAnimationFrame(draw)
+})();
+/* guide */
+var lines=[
+"Hi, I\u2019m Nova! I\u2019ll walk you through Nalini\u2019s portfolio. She is a BTech student at Maharishi Dayanand University, training to become a data scientist.",
+"Her installed skills are Python, SQL, statistics and HTML. She learns by building, and she enjoys internships where she can work with real data.",
+"Next, in about 3 to 4 months, she is loading Excel, Power BI, Tableau, machine learning and NLP.",
+"Her projects will appear in the Missions section as she builds them, starting after Python and SQL practice.",
+"In about 6 months she will start applying for internships. You can email her at jiyaa0036@gmail.com or open her LinkedIn from the buttons below."
+];
+var EMAIL='jiyaa0036@gmail.com',SPOKEN='j i y a a, zero zero three six, at gmail dot com';
+var i=0,say=document.getElementById('say'),card=document.getElementById('char'),dots=document.getElementById('dots'),timer,muted=false,voice=null;
+var synth=window.speechSynthesis;
+function pick(){if(!synth)return;var v=synth.getVoices();
+  voice=v.filter(function(x){return /^en-IN/i.test(x.lang)&&/female|heera|veena|neerja|google/i.test(x.name)})[0]||
+        v.filter(function(x){return /^en/i.test(x.lang)&&/female|zira|samantha|aria|jenny|hazel|susan|google uk english female/i.test(x.name)})[0]||
+        v.filter(function(x){return /^en-IN/i.test(x.lang)})[0]||v.filter(function(x){return /^en/i.test(x.lang)})[0]||null}
+if(synth){pick();synth.onvoiceschanged=pick}
+lines.forEach(function(){dots.appendChild(document.createElement('u'))});
+function type(t,ms,keepTalk){
+  clearInterval(timer);say.textContent='';var k=0;if(keepTalk)card.classList.add('talking');
+  timer=setInterval(function(){k+=calm?t.length:1;say.textContent=t.slice(0,k);
+    if(k>=t.length){clearInterval(timer);if(keepTalk)card.classList.remove('talking')}},ms)}
+function talk(n,withVoice){
+  i=(n+lines.length)%lines.length;var t=lines[i];
+  if(synth)synth.cancel();
+  [].forEach.call(dots.children,function(d,k){d.className=k===i?'on':''});
+  if(withVoice&&synth&&!muted){
+    var u=new SpeechSynthesisUtterance(t.replace(EMAIL,SPOKEN));
+    if(voice){u.voice=voice;u.lang=voice.lang}else u.lang='en-IN';
+    u.rate=.95;u.pitch=1.15;
+    u.onstart=function(){card.classList.add('talking')};
+    u.onend=u.onerror=function(){card.classList.remove('talking')};
+    type(t,Math.max(35,Math.round(t.length>0?5200/t.length*1.0:40)),false);
+    synth.speak(u);
+  }else type(t,30,true);
+}
+document.getElementById('next').onclick=function(){talk(i+1,true)};
+document.getElementById('prev').onclick=function(){talk(i-1,true)};
+document.getElementById('speak').onclick=function(){var m=muted;muted=false;talk(i,true);muted=m};
+document.getElementById('mute').onclick=function(){muted=!muted;this.textContent=muted?'Unmute':'Mute';this.setAttribute('aria-pressed',muted);if(muted&&synth){synth.cancel();card.classList.remove('talking')}};
+var seen=false;new IntersectionObserver(function(en){if(en[0].isIntersecting&&!seen){seen=true;talk(0,false)}},{threshold:.4}).observe(document.getElementById('guide'));
+})();
+</script>
+</body>
+</html>
